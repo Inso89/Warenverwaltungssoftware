@@ -73,11 +73,36 @@ namespace Warenverwaltung
             return passwort;
         }
 
-        // Platzhalter für Hauptmenü
+        // Hauptmenü
         static void Hauptmenü(string benutzername)
         {
-            Console.WriteLine($"[DEBUG] Hier würde das Hauptmenü für {benutzername} starten...");
-            // Weiterführende Logik folgt hier
+            while (true)
+            {
+                Console.WriteLine("\n--- Hauptmenü ---");
+                Console.WriteLine("1. Warenerfassung (CSV)");
+                Console.WriteLine("2. Warenbestand anzeigen");
+                Console.WriteLine("3. Programm beenden");
+                Console.Write("Auswahl: ");
+                string eingabe = Console.ReadLine();
+
+                switch (eingabe)
+                {
+                    case "1":
+                        LagerCsv.ArtikelErfassen();
+                        break;
+                    case "2":
+                        LagerCsv.AlleArtikelAnzeigen();
+                        break;
+                    case "3":
+                        Console.WriteLine("Programm wird beendet...");
+                        return;
+                    default:
+                        Console.WriteLine("Ungültige Eingabe.");
+                        break;
+                }
+            }
         }
+
     }
 }
+     
