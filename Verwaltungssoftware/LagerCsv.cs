@@ -53,7 +53,7 @@ namespace Warenverwaltung
             foreach (var zeile in zeilen)
             {
                 var artikel = Artikel.FromCsv(zeile);
-                Console.WriteLine($"[{artikel.Artikelnummer}] {artikel.Bezeichnung} | Menge: {artikel.Menge} | Preis: {artikel.Preis:C}");
+                Console.WriteLine($"[{artikel.Artikelnummer}] {artikel.Bezeichnung} | Menge: {artikel.Menge} | Preis: {artikel.Preis}\u20AC");
             }
         }
         public static void ArtikelBestellen()

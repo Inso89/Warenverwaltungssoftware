@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Warenverwaltung
 {
@@ -8,7 +9,7 @@ namespace Warenverwaltung
         // Benutzerliste (Username, Passwort)
         static Dictionary<string, string> benutzerListe = new Dictionary<string, string>
         {
-            { "admin", "admin123" },
+            { "Admin", "admin123" },
             { "Hans", "hans123" },
             { "Harald", "harald123" },
             { "Luise", "luise123" }
@@ -16,6 +17,7 @@ namespace Warenverwaltung
 
         static void Main(string[] args)
         {
+           
             Console.Title = "Warenverwaltung - Login";
             bool loginErfolgreich = false;
 
