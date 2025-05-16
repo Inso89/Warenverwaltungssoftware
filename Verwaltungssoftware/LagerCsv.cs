@@ -56,5 +56,55 @@ namespace Warenverwaltung
                 Console.WriteLine($"[{artikel.Artikelnummer}] {artikel.Bezeichnung} | Menge: {artikel.Menge} | Preis: {artikel.Preis:C}");
             }
         }
+        public static void ArtikelBestellen()
+        {
+            if (!File.Exists(dateipfad))
+            {
+                Console.WriteLine("Noch keine Artikel vorhanden.");
+                return;
+            }
+
+            Console.Write("\nArtikelnummer für Bestellung: ");
+            string artikelnummer = Console.ReadLine();
+
+            Console.Write("Bestellmenge: ");
+            if (!int.TryParse(Console.ReadLine(), out int bestellmenge) || bestellmenge <= 0)
+            {
+                Console.WriteLine("Ungültige Menge.");
+                return;
+            }
+
+            var zeilen = File.ReadAllLines(dateipfad);
+            var artikelListe = new List<Artikel>();
+            bool gefunden = false;
+
+            foreach (var zeile in zeilen)
+            {
+                var artikel = Artikel.FromCsv(zeile);
+
+                if (artikel.Artikelnummer.Equals(artikelnummer, StringComparison.OrdinalIgnoreCase))
+                {
+                    artikel.Menge += bestellmenge;
+                    gefunden = true;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"Artikel {artikel.Bezeichnung} wurde um {bestellmenge} Stück erhöht.");
+                    Console.ResetColor();
+                }
+
+                artikelListe.Add(artikel);
+            }
+
+            if (!gefunden)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Artikelnummer nicht gefunden.");
+                Console.ResetColor();
+                return;
+            }
+
+            // Datei mit aktualisierten Daten überschreiben
+            File.WriteAllLines(dateipfad, artikelListe.Select(a => a.ToCsv()));
+        }
+
     }
-}
+} 

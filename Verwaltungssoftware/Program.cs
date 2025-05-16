@@ -81,7 +81,8 @@ namespace Warenverwaltung
                 Console.WriteLine("\n--- Hauptmenü ---");
                 Console.WriteLine("1. Warenerfassung (CSV)");
                 Console.WriteLine("2. Warenbestand anzeigen");
-                Console.WriteLine("3. Programm beenden");
+                Console.WriteLine("3. Artikel bestellen (Bestand erhöhen)");
+                Console.WriteLine("4. Programm beenden");
                 Console.Write("Auswahl: ");
                 string eingabe = Console.ReadLine();
 
@@ -94,6 +95,9 @@ namespace Warenverwaltung
                         LagerCsv.AlleArtikelAnzeigen();
                         break;
                     case "3":
+                        LagerCsv.ArtikelBestellen();
+                        break;
+                    case "4":
                         Console.WriteLine("Programm wird beendet...");
                         return;
                     default:
@@ -102,7 +106,5 @@ namespace Warenverwaltung
                 }
             }
         }
-
     }
 }
-     
